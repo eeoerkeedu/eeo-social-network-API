@@ -4,10 +4,15 @@ const { Schema, model } = require("mongoose");
 const userSchema = new Schema(
 	{
 		// accepts username, emails, an array for their thoughts posts, and an array for their list of friends.
-		username: String,
-		email: String,
-		thoughts: [],
-		friends: [],
+		username: {
+			type: String,
+			required: true,
+			unique: true,
+			trim: true,
+		},
+		email: { type: String, required: true, unique: true, validate: email },
+		thoughts: [{ type: Schema.Types.ObjectId, ref: "thoughts" }],
+		friends: [{ type: Schema.Types.ObjectId, ref: "user" }],
 	},
 	{
 		// setting vituals to be included in response.
@@ -26,6 +31,7 @@ userSchema
 		return this.friends.length;
 	});
 
+// Initialize our User model
 const User = model("user", userSchema);
 
 module.exports = User;
