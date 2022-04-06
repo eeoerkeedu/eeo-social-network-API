@@ -1,14 +1,12 @@
 {
   "name": "Social_Network_API",
   "version": "1.0.1",
-  "description": "Mongoose back-end project - Develop",
-  "main": "index.js",
+  "description": "Mongoose back-end social media project- Develop",
+  "main": "server.js",
   "license": "MIT",
   "scripts": {
-    "start": "node index",
-    "dev": "nodemon index",
-    "seed": "node utils/seed",
-    "heroku-postbuild": "node utils/seed.js"
+    "start": "node server",
+    "dev": "nodemon server"
   },
   "dependencies": {
     "express": "^4.17.1",
