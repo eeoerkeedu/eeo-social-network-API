@@ -8,7 +8,7 @@ const {
 	deleteThought,
 } = require("../../controllers/thoughtController");
 
-// get all Thoughts, post a new user
+// get all Thoughts, post a new Thought
 router.route("/").get(getThoughts).post(createThought);
 
 // get one Thought, update a Thought, delete a Thought

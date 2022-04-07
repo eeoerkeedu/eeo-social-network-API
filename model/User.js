@@ -10,7 +10,16 @@ const userSchema = new Schema(
 			unique: true,
 			trim: true,
 		},
-		email: { type: String, required: true, unique: true, validate: email },
+		email: {
+			type: String,
+			required: true,
+			unique: true,
+			// validate: {
+			// 	validator: function (v) {
+			// 		return /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/(v);
+			// 	},
+			// },
+		},
 		thoughts: [{ type: Schema.Types.ObjectId, ref: "thoughts" }],
 		friends: [{ type: Schema.Types.ObjectId, ref: "user" }],
 	},
