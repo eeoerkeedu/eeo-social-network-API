@@ -24,15 +24,13 @@ module.exports = {
 		Thought.create(req.body)
 			.then((thought) => res.json(thought))
 			// adds the posted thought to the user's thoughts
-			.then((thought) =>
-				!thought
-					? res.status(404).json({ message: "No such thought exists" })
-					: User.findOneAndUpdate(
-							{ _id: req.params.userId },
-							{ $addToSet: { thoughts: thought._id } },
-							{ new: true }
-					  )
-			)
+			.then((thought) => {
+				return User.findOneAndUpdate(
+					{ _id: req.params.userId },
+					{ $addToSet: { thoughts: req.params.thoughtId } },
+					{ new: true }
+				);
+			})
 			.catch((err) => {
 				console.log(err);
 				return res.status(500).json(err);
@@ -69,7 +67,7 @@ module.exports = {
 	},
 	// post a reaction
 	addReaction(req, res) {
-		console.log("You are adding a reaction!");
+		console.log("Reaction Added");
 		console.log(req.body);
 		Thought.findOneAndUpdate(
 			{ _id: req.params.thoughtId },

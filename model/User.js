@@ -14,14 +14,13 @@ const userSchema = new Schema(
 			type: String,
 			required: true,
 			unique: true,
-			// validate: {
-			// 	validator: function (v) {
-			// 		return /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/(v);
-			// 	},
-			// },
+			match: [
+				/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
+				"invalid email entered",
+			],
 		},
-		thoughts: [{ type: Schema.Types.ObjectId, ref: "thoughts" }],
-		friends: [{ type: Schema.Types.ObjectId, ref: "user" }],
+		thoughts: [{ type: Schema.Types.ObjectId, ref: "Thought" }],
+		friends: [{ type: Schema.Types.ObjectId, ref: "User" }],
 	},
 	{
 		// setting vituals to be included in response.
